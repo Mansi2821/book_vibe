@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Vibe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+            <span>BookVibe</span>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="add_book.html">Add Book</a></li>
+            <li><a href="interests.html">Your Interests</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="welcome-container">
+        <div class="background-container">
+        <h1 class="welcome-title">Welcome to BookVibe</h1>
+        <p class="welcome-message">Discover your next favorite book tailored to your unique interests!</p>
+    </div>
+    </div>
+    <div class="container">
+        <h1>Book Recommendations</h1>
+        <div class="slider" id="book-slider"></div>
+    </div>
+    <!-- button -->
+    <div class="container">
+        <!-- <h1>Book Recommendations</h1> -->
+        <!-- <div class="slider" id="book-slider"> -->
+            <div class="button-group">
+                <a href="add_book.html" class="btn">Share your Favourite books !</a>
+                <a href="interests.html" class="btn">books Recommended for you!</a>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-top" id="backToTop">↑ Back to Top</div>
+
+    <script>
+        $(document).ready(function() {
+            var backToTopButton = $('#backToTop');
+    
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 300) {
+                    backToTopButton.fadeIn();
+                } else {
+                    backToTopButton.fadeOut();
+                }
+            });
+    
+            backToTopButton.click(function() {
+                $('html, body').animate({ scrollTop: 0 }, '300');
+            });
+        });
+    </script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function loadBooks() {
+                $.ajax({
+                    url: 'load_books.php',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#book-slider').html(data);
+                        $('.slider').slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 500,
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            autoplay: true,
+                            autoplaySpeed: 2000,
+                            responsive: [
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1,
+                                        infinite: true,
+                                        dots: true
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1
+                                    }
+                                }
+                            ]
+                        });
+                    },
+                    error: function() {
+                        $('#book-slider').html('<p>An error occurred while loading the book list. Please try again.</p>');
+                    }
+                });
+            }
+            loadBooks(); // Call the function to load books on page load
+        });
+    </script>
+
+<div class="container">
+    <h1>Find Books by Genre</h1>
+    <form id="genreForm">
+        <label for="genre">Select Genre:</label>
+        <select id="genre" name="genre">
+            <option value="Fantasy">Fantasy</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Mystery">Mystery</option>
+            <!-- Add more genres as needed -->
+        </select>
+        <input type="submit" value="Search">
+    </form>
+
+    <div id="genre-recommendations"></div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#genreForm').submit(function(event) {
+            event.preventDefault();
+            var selectedGenre = $('#genre').val();
+
+            $.ajax({
+                url: 'get_recommendations_by_genre.php',
+                type: 'GET',
+                data: { genre: selectedGenre },
+                success: function(data) {
+                    $('#genre-recommendations').html(data);
+                },
+                error: function() {
+                    $('#genre-recommendations').html('<p>An error occurred while loading recommendations. Please try again.</p>');
+                }
+            });
+        });
+    });
+</script>
+
+     <div class="about-container">
+        <h1>About This Website</h1>
+        <p>This is a book recommendation website where users can explore, add, and review their favorite books.</p>
+    </div>
+    
+</body>
+</html>
+
+
+

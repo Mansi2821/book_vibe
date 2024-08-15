@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Interests</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    background-image: url('bg3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="add_book.html">Add Book</a></li>
+            <li><a href="interests.html">Your Interests</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Tell Us About Your Interests</h1>
+        <form id="interestForm">
+            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>"> 
+            <label for="favorite_genre">Favorite Genre:</label>
+            <input type="text" id="favorite_genre" name="favorite_genre" required>
+
+            <label for="favorite_author">Favorite Author:</label>
+            <input type="text" id="favorite_author" name="favorite_author" required>
+
+            <label for="reading_frequency">How Often Do You Read?:</label>
+            <select id="reading_frequency" name="reading_frequency" required>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Occasionally">Occasionally</option>
+            </select>
+
+            <label for="preferred_language">Preferred Language:</label>
+            <input type="text" id="preferred_language" name="preferred_language" required>
+
+            <input type="submit" value="Save Interests">
+        </form>
+        <div id="responseMessage"></div>
+    </div>
+
+    <div class="container">
+        <h1>Recommended for You</h1>
+        <div id="recommendation-list"></div>
+    </div>
+
+    <!-- Review Section -->
+    <section class="reviews">
+        <h2>Leave a Review</h2>
+        <form action="submit_review.php" method="POST">
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" rows="4" required></textarea>
+
+            <label for="rating">Your Rating:</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label for="star5" title="5 stars">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4" title="4 stars">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3" title="3 stars">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2" title="2 stars">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1" title="1 star">&#9733;</label>
+            </div>
+            <input type="submit" value="Submit Review">
+        </form>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function loadRecommendations() {
+                $.ajax({
+                    url: 'get_recommendations.php',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#recommendation-list').html(data);
+                    },
+                    error: function() {
+                        $('#recommendation-list').html('<p>An error occurred while loading recommendations. Please try again.</p>');
+                    }
+                });
+            }
+            loadRecommendations(); // Call the function to load recommendations on page load
+        });
+    </script>
+
+    
+
+
+    <div class="about-container">
+        <h1>About This Website</h1>
+        <p>This is a book recommendation website where users can explore, add, and review their favorite books.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#interestForm').submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                $.ajax({
+                    url: 'save_interests.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#responseMessage').html('<p>' + response + '</p>');
+                        $('#interestForm')[0].reset(); // Reset the form after successful submission
+                    },
+                    error: function() {
+                        $('#responseMessage').html('<p>An error occurred while saving your interests. Please try again.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Login Popup -->
+<div id="login-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h2>Login to BookVibe</h2>
+        <form action="login.php" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</div>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Get the popup element
+    var popup = document.getElementById('login-popup');
+    
+    // Show the popup when the page loads
+    popup.style.display = 'flex';
+
+    // Get the close button
+    var closeBtn = document.querySelector('.close-btn');
+
+    // Close the popup when the close button is clicked
+    closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    // Close the popup when clicking outside the popup content
+    window.addEventListener('click', function(event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+        }
+    });
+});
+ 
+</script>
+     
+</body>
+</html>

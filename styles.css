@@ -1,0 +1,534 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(231, 227, 227);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    align-content: center;
+    background-image: url(bg2.jpeg);
+    background-size: cover;
+}
+
+nav {
+    background-color: #007bff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav .logo img {
+    height: 50px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f6eeee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.book {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.book:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+.book img {
+    width: 120px;
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.book-details h3 {
+    margin: 0;
+    color: #333;
+}
+
+.book-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #2da569;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #8edbae;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Add styles for buttons */
+.button-group {
+    margin-top: 20px;
+    text-align: center;
+    height: 100px;
+    font-size: 1.2em;
+}
+
+.button-group .btn {
+    background-color: #8c20bb;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s, transform 0.3s;
+   
+
+}
+
+.button-group .btn:hover {
+    background-color: #b285ce;
+    transform: scale(1.05);
+}
+
+.welcome-container .background-container {
+    background-image: url("C:\wamp64\www\book_recommendation\images\bg.jpeg"); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #b285ce;
+    padding: 40px;
+    border-radius: 10px; /* Optional: Rounds the corners of the container */
+    color: #ffffff; /* Changes text color to white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds a shadow for better text readability */
+ }
+ 
+
+/* Welcome Container */
+
+div.welcome-container {
+    text-align: center;
+    margin: 50px 0;
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1.welcome-title {
+    font-size: 3em;
+    color: rgb(69, 67, 67);
+    animation: slideInFromLeft 1s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p.welcome-message {
+    font-size: 1.7em;
+    color: #dfe879;
+    animation: slideInFromRight 1s ease-in-out;
+    margin-top: 20px;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(181, 178, 181, 0.2);
+    align-content: center;
+}
+
+/* Book List Container */
+.container {
+    /* text-align: center; */
+    margin: 30px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+/* Add styling for slider */
+.slider {
+    margin-top: 20px;
+}
+
+.slide {
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: white;
+    transition: transform 0.3s;
+}
+
+.slide:hover {
+    transform: scale(1.05);
+}
+
+.slide img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.book-details {
+    margin-top: 10px;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-to-top:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Button animations
+.button-group .btn {
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.button-group .btn:hover {
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+    transform: translateY(-3px);
+} */
+.about-container{
+    width: 100%;
+    background-color: #333;
+    color: #ffffff;
+    height: 200px;
+}
+
+/* Mission & Vision Section */
+.mission-vision {
+    padding: 40px 20px;
+    background-color: #f7f1c9;
+    margin: 40px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: larger;
+}
+
+.mission-vision p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+/* Infographic & Statistics Section */
+.stats {
+    padding: 40px 20px;
+    background-color: #e4efcc;
+    margin: 40px auto;
+    max-width: 1200px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.stat-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+.stat h3 {
+    font-size: 2.5em;
+    color: #FF5733;
+}
+
+.stat p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 40px 20px;
+    background-color: #fff;
+    margin: 40px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: larger;
+}
+
+.testimonials blockquote {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-left: 5px solid #FF5733;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Review Section */
+.reviews {
+    padding: 40px 20px;
+    background-color: #dfeffa;
+    margin: 40px auto;
+    /* max-width: 800px; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    font-size: larger;
+}
+
+.reviews form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviews label {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.reviews textarea {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 2em;
+    gap: 10px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #f7b3b3;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f58d3d;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f0dd4d;
+}
+
+.reviews input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #0d5895;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.reviews input[type="submit"]:hover {
+    background-color: #369ae1;
+}
+
+/* Popup Background */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Login Form Styles */
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 1em;
+    color: #333;
+}
+
+.popup-content input[type="text"],
+.popup-content input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup-content input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.popup-content input[type="submit"]:hover {
+    background-color: #575757;
+}
+
